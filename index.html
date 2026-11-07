@@ -97,6 +97,8 @@ button{font:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:3p
 @media (min-width:880px){.face{width:112px;height:112px}.dial svg{max-width:230px}}
 .mm{position:relative;height:8px;border-radius:5px;margin:6px 8px 3px;background:linear-gradient(90deg,#3b82e6,#3bb35f,#f59a23,#e5483f)}.mm i{position:absolute;top:-3px;left:55%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--cc);border:2px solid var(--card);box-shadow:0 1px 4px rgba(0,0,0,.35);transition:left .9s cubic-bezier(.3,1.3,.5,1)}.ml{font-size:12px;font-weight:600;line-height:1.2}
 .legend{display:flex;justify-content:space-between;font-size:11px;color:var(--mu);padding:0 6px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.sk{background:transparent;border:2px solid var(--ln);border-radius:14px;padding:10px 16px;font-weight:600}.sk:hover{border-color:var(--cw)}
+.b.l.nb{font-weight:400}.b.l.nb small{font-weight:500}
 @keyframes sway{from{transform:rotateY(-9deg) rotateX(2deg)}to{transform:rotateY(9deg) rotateX(-2deg)}}@keyframes par{from{transform:translateX(-1px)}to{transform:translateX(1px)}}
 @keyframes nod{to{transform:translateY(1.6px)}}@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}@keyframes talk{from{transform:scale(1,.35)}to{transform:scale(1.1,1.2)}}@keyframes burst{from{transform:scale(.8);opacity:.9}to{transform:scale(2.3);opacity:0}}
 @keyframes in{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
@@ -119,7 +121,7 @@ button{font:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:3p
 <div style="--cc:var(--ca)"><b>Antoine</b> · Strategist, Paris</div><div style="--cc:var(--cs)"><b>Sophie</b> · Creative Director, Paris</div>
 <div style="--cc:var(--cj)"><b>Jason</b> · Account Director, SG</div><div style="--cc:var(--cw)"><b>Weiling</b> · Junior Associate (you)</div></div>
 <p><b>Three moments. One answer each. No retries.</b> Choose what you would now say or do, using the CQ Knowledge, Strategy and Action we covered. Watch the mood meter and the colours shift as the meeting unfolds, and tap anywhere to speed the scene up.</p>
-<button class="go" id="start">Start the meeting</button>
+<div class="btns"><button class="go" id="start">Start the meeting</button><button class="sk" id="skipd">Skip to discussion</button></div>
 </div></section>
 
 <section id="play" class="hide">
@@ -146,6 +148,7 @@ var SEG=[[
 {w:"A",x:"My worry is, if everyone claims authenticity, nobody is authentic. Distinction is absolutely essential.",m:"🗣️",g:"lean",e:1,l:1,ov:1},
 {w:"S",x:"I agree partly. Authenticity alone feels thin.",m:"😊",g:"hands",e:.85,l:1}
 ],[
+{n:"The debate moves on."},
 {w:"J",x:"I wonder whether there might be room to interpret the findings somewhat differently.",m:"😐",g:"still",e:.1},
 {w:"A",x:"Stories need substance. Otherwise, it’s a creative argument, not a strategic one.",m:"🗣️",g:"tap",e:.8,l:1},
 {w:"S",x:"Wonderful. Another campaign where we bombard people with scientific terminology.",m:"😒",e:.75,l:1},
@@ -156,6 +159,10 @@ var SEG=[[
 {w:"A",x:"Weiling gave us a real premise to challenge. A flat idea gives us nothing to work with.",m:"🙂",g:"lean",e:.6,l:1},
 {t:1,w:"W",x:"Her smile stiffens at “flat”.",m:"😬",g:"stiff",e:.5}
 ],[
+{w:"S",x:"Minutes ago he was attacking the idea—",m:"😊",g:"hands",e:.6,l:1},
+{w:"A",x:"Questioning.",m:"😄",e:.6,l:1},
+{w:"S",x:"Questioning. And now he’s drawing diagrams around it.",m:"😄",e:.6,l:1},
+{t:1,w:"W",x:"Weiling gives a small nod at “attacking”.",m:"🙂",e:.4},
 {w:"S",x:"Anyway, that’s clear then, now that the narrative has a logical spine. What else do you have, Weiling?",m:"😊",g:"hands",e:.7,l:1},
 {n:"You eye the remaining twenty slides you wanted to present."}
 ]];
@@ -164,8 +171,8 @@ var DEC=[
 {q:"Antoine has cut in, louder, and Sophie agrees with him. Your sentence is still unfinished. What do you do?",tags:["S","A"],
  meant:"This matters, so I am testing it hard.",heard:"He doubts my work, and me.",
  o:[
- {k:"best",s:"Stepped in plainly",t:"Step in promptly and plainly: “Let me finish my point. Our ASEAN interviews show why authenticity matters here.”",
-  f:"The French test ideas by challenging them, so arguing back earns respect while silence suggests you have nothing more to offer. You also reappraised: Antoine challenged the work, not you (Meyer, 2016).",
+ {k:"best",s:"Stepped in plainly",t:"Step in promptly and plainly: “Our ASEAN interviews show why authenticity matters here.”",
+  f:"The French test ideas by challenging them, so arguing back earns respect while silence suggests you have nothing more to offer. You also reappraised: Antoine challenged the work, not you (Meyer, 2016). You do not need to match the French style of speaking. Stating the point plainly is enough.",
   out:[{w:"A",x:"Ah! Go on, convince me.",m:"😄",g:"lean",e:.8,l:1}]},
  {k:"mid",s:"Raised a hand",t:"Raise your hand to signal you want to finish your point, and wait to be called on.",
   f:"A respectful option if interrupting feels uncomfortable. But it is slower, and in an overlapping debate the signal may be noticed too late.",
@@ -173,17 +180,17 @@ var DEC=[
  {k:"weak",s:"Waited quietly",t:"Wait quietly for a pause, since interrupting feels rude.",
   f:"Waiting for a turn is natural in a neutral culture, but here the pause never comes. Your point stays unheard, and silence can read as having nothing more to add.",
   out:[{w:"A",x:"Why start from authenticity at all, if the brand’s strongest asset is credibility?",m:"🗣️",g:"tap",e:.85,l:1}]}]},
-{q:"Antoine calls your idea “a real premise to challenge”, yet “a flat idea” stings. What do you do?",tags:["S","A"],
- meant:"Your premise was strong enough to build on.",heard:"My idea was dull.",
+{q:"Antoine says, “Weiling gave us a real premise to challenge. A flat idea gives us nothing to work with.” Your smile stiffens at “flat”. What do you do?",tags:["S","A"],
+ meant:"Other ideas are flat. Yours gave us something to work with.",heard:"He called my idea flat.",
  o:[
  {k:"best",s:"Asked what worked",t:"Ask what worked: “Which parts of the premise worked best for you, and where should we push further?”",
-  f:"French praise is sparing and implicit. Asking turns Antoine’s hidden compliment into balanced feedback you can learn from.",
+  f:"Antoine was calling other ideas flat, so he was complimenting yours, but French praise is sparing and implicit and easy to miss. Asking turns the hidden compliment into balanced feedback you can learn from.",
   out:[{w:"A",x:"The fieldwork. That is the strong part! Now push the distinction further.",m:"😄",g:"lean",e:.85,l:1}]},
- {k:"mid",s:"Defended the idea",t:"Defend it: “It isn’t flat. The focus groups clearly supported it.”",
-  f:"Arguing back shows commitment, but defending misses the compliment hidden in “a real premise” and can turn feedback into a contest.",
+ {k:"mid",s:"Defended the idea",t:"Defend it: “The focus groups clearly supported this idea.”",
+  f:"Arguing back shows commitment, but defending an idea that was not attacked misses that Antoine was calling other ideas flat, which complimented yours.",
   out:[{w:"A",x:"Ah, now we debate!",m:"😏",g:"lean",e:.8,l:1}]},
- {k:"weak",s:"Stayed silent",t:"Smile, say nothing and take “flat” as the verdict.",
-  f:"The French voice far more criticism than praise. Taking “flat” as the verdict misses the implicit praise and leaves the sting unresolved.",
+ {k:"weak",s:"Stayed silent",t:"Smile, say nothing and take “flat” as criticism of your idea.",
+  f:"Hearing “flat” as a verdict on your idea misses that Antoine meant other ideas, which makes it a compliment. Staying silent leaves the praise undiscovered and the sting unresolved.",
   out:[{n:"Antoine starts annotating his deck, unaware you are still hurt."}]}]},
 {q:"Sophie asks, “What else do you have, Weiling?” Your laptop is half closed.",tags:["A"],
  meant:"I genuinely want to hear more.",heard:"A polite way to wrap up.",
@@ -198,7 +205,7 @@ var DEC=[
   f:"Closing the laptop ends the only invitation you were given, and the remaining findings never reach the room.",
   out:[{w:"S",x:"Thank you!",m:"😊",e:.3,l:1},{n:"The meeting ends."}]}]}];
 var QS=["Which choice felt least natural, and what habit or assumption were you pushing against?","Where did you first read Antoine or Sophie as hostile before reappraising it? What else could it have meant?","Adapting has limits. Where would you draw the line between adjusting to be heard and copying a style that feels forced?"];
-var $=function(i){return document.getElementById(i)},feed=$("feed"),dock=$("dock"),skip=null,run=0,H,R,picks;
+var $=function(i){return document.getElementById(i)},feed=$("feed"),dock=$("dock"),skip=null,run=0,late=false,H,R,picks;
 function wait(ms){return new Promise(function(r){var t=setTimeout(function(){skip=null;r()},ms);skip=function(){clearTimeout(t);skip=null;r()}})}
 document.addEventListener("click",function(e){if(skip&&!e.target.closest("button"))skip()});
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
@@ -235,7 +242,7 @@ async function show(s){
  if(s.m)setMood(a,MOOD[s.m]);
  if(s.ov&&feed.lastElementChild){var pb=feed.lastElementChild.querySelector(".b");if(pb)pb.classList.add("cut")}
  heat(s.e||.2);
- var side=(s.w=="A"||s.w=="S")?"pa":"sg",row=el("row "+side,'<div class="mini" style="--cc:var('+p.c+')"><div class="pic">'+svg(s.w)+'</div></div><div class="b '+(s.t?"th ":"")+(s.l?"l ":"c ")+(s.cut?"cut":"")+'" style="--cc:var('+p.c+')"><small></small><div class="tx"></div><div class="chips"></div></div>'),b=row.lastChild;setMood(row.firstChild,MOOD[s.m]);
+ var side=(s.w=="A"||s.w=="S")?"pa":"sg",row=el("row "+side,'<div class="mini" style="--cc:var('+p.c+')"><div class="pic">'+svg(s.w)+'</div></div><div class="b '+(s.t?"th ":"")+(s.l?"l ":"c ")+(late&&s.l?"nb ":"")+(s.cut?"cut":"")+'" style="--cc:var('+p.c+')"><small></small><div class="tx"></div><div class="chips"></div></div>'),b=row.lastChild;setMood(row.firstChild,MOOD[s.m]);
  b.querySelector("small").innerHTML=p.n+' <span class="role">'+(s.w=="W"?"Junior Associate":p.r)+'</span>';b.querySelector(".tx").textContent=s.x;
  var ch=b.querySelector(".chips");function chip(t,k){var c=document.createElement("span");c.className="chip "+(k||"");c.textContent=t;ch.appendChild(c)}var cap=!s.t&&G[s.g]&&G[s.g][1];if(cap)chip(cap);if(s.ov)chip("overlaps","hot");if(s.cut)chip("cut off","cut");if(s.l)chip("raised energy","hot");
  if(s.l)spark(s.w);if(s.fx)setTimeout(function(){spark("A")},300);
@@ -254,24 +261,27 @@ function decide(d){return new Promise(function(res){
    if(x.k=="weak"){heat(.3)}var qm=x.t.match(/^[^:]+:\s*“([^”]+)”/);await show(qm?{w:"W",x:qm[1],m:"🙂",e:.4}:{n:"You choose to "+x.t.charAt(0).toLowerCase()+x.t.slice(1)});
    for(var s of x.out)await show(s);
    var fb=document.createElement("div");fb.className="fb";
-   fb.innerHTML=D.tags.map(function(t){return '<span class="tag '+t+'">'+(t=="S"?"CQ Strategy":t=="A"?"CQ Action":"CQ Knowledge")+'</span>'}).join("")+'<p></p><div class="flip"><div class="fc m"><small>What Paris meant</small><span></span></div><div class="fc h"><small>What Weiling may hear</small><span></span></div></div><button class="go">'+(d==2?"See my reflection ▶":"Continue ▶")+'</button>';
+   fb.innerHTML=D.tags.map(function(t){return '<span class="tag '+t+'">'+(t=="S"?"CQ Strategy":t=="A"?"CQ Action":"CQ Knowledge")+'</span>'}).join("")+'<p></p><div class="flip"><div class="fc m"><small>What Paris meant</small><span></span></div><div class="fc h"><small>What Weiling may hear</small><span></span></div></div><div class="btns"><button class="go">'+(d==2?"See my reflection ▶":"Continue ▶")+'</button>'+(d<2?'<button class="sk">Skip to discussion</button>':'')+'</div>';
    fb.querySelector("p").textContent=x.f;fb.querySelector(".fc.m span").textContent=D.meant;fb.querySelector(".fc.h span").textContent=D.heard;
-   box.appendChild(fb);dock.scrollTop=dock.scrollHeight;fb.querySelector("button").onclick=function(){dock.className="hide";res()}}})})}
+   box.appendChild(fb);dock.scrollTop=dock.scrollHeight;fb.querySelector("button").onclick=function(){dock.className="hide";res()};var sk=fb.querySelector(".sk");if(sk)sk.onclick=function(){skipAll=true;dock.className="hide";res()}}})})}
 async function play(){
- var id=++run;H=25;R=25;picks=[];feed.innerHTML="";dock.className="hide";$("end").classList.add("hide");$("intro").classList.add("hide");$("play").classList.remove("hide");
+ var id=++run;H=25;R=25;picks=[];skipAll=false;feed.innerHTML="";dock.className="hide";$("end").classList.add("hide");$("intro").classList.add("hide");$("play").classList.remove("hide");
  cast();initMoods();pips();setM(0,0);heat(.1);
- for(var d=0;d<3;d++){for(var s of SEG[d]){if(id!=run)return;await show(s)}await decide(d)}
+ for(var d=0;d<3;d++){late=d==2;for(var s of SEG[d]){if(id!=run)return;await show(s)}await decide(d);if(skipAll)break}
  finish()}
+var QP=["Picture your first week in a multinational team in Singapore. Which one adjustment from today would you make in your first meeting, and why would it work?","A new colleague from another culture speaks in a very different style from yours. What would you do before and during your first meeting to read them accurately?","Think of a future team you may join. When might you be tempted to read a colleague’s direct challenge as rejection, and what would you ask yourself or them before reacting?","You are Jason, the senior colleague. What would you do in your next meeting to make sure a junior teammate is heard, and why would that help the whole team?","Where would you draw the line between adapting to a colleague’s style and keeping your own, and how would you check that your adjustment is working?"],qo=[],qn=0;
+function drawQ(){if(!qo.length)qo=shuffle(QP.slice());$("rq").textContent=qo.pop()}
+function REFL(){qo=shuffle(QP.slice());qn=0;return '<div class="card"><h2>Reflection discussion</h2><p class="mu">Each group discusses one question on applying today’s insights in future workplaces.</p><div class="q"><span>?</span><div id="rq"></div></div><button class="go" id="dq">Randomise question</button></div>'}
 function finish(){
  $("play").classList.add("hide");heat(.1);var e=$("end");e.classList.remove("hide");
- var ok=picks.filter(function(p){return p.x.k=="best"}).length,V=H>=85?["🌟","Heard and respected"]:H>=50?["👍","Partly heard"]:["🌱","Not yet heard"];
- var an=ok==3?"You stepped in plainly, asked what worked and kept the floor. Those are the adaptations CA3 recommends, and you made them without copying Antoine’s volume.":"Look at where you chose the quieter or softer route. Those habits are natural in a neutral culture, but in a French-style debate they can read as having nothing more to add. Adapting has limits, so aim to be heard, not louder than Antoine.";
+ var ok=picks.filter(function(p){return p.x.k=="best"}).length,n=picks.length,V=ok==n&&n?["🌟","Heard and respected"]:ok*2>=n?["👍","Partly heard"]:["🌱","Not yet heard"];
+ var an=n<3?"You answered "+n+" of 3 moments before moving to discussion. Compare your choices below with the most effective ones.":ok==3?"You stepped in plainly, asked what worked and kept the floor. Those are the adaptations recommended in CQ Action, and you made them without needing to copy the French style of speaking.":"Look at where you chose the quieter or softer route. Those habits are natural in a neutral culture, but in a French-style debate they can read as having nothing more to add. Adapting has limits, so aim to be heard, not to copy the French style of speaking.";
  var rc=picks.map(function(p){var b=DEC[p.d].o.filter(function(z){return z.k=="best"})[0];return '<div class="rc '+p.x.k+'"><b>Moment '+(p.d+1)+' · '+LB[p.x.k]+'.</b> You: '+p.x.s+'.'+(p.x.k!="best"?' Most effective: '+b.s+'.':'')+'</div>'}).join("");
- e.innerHTML='<div class="card"><div class="v">'+V[0]+' '+V[1]+'</div><p class="mu">Being heard '+H+' · Rapport '+R+' · '+ok+' of 3 most effective</p>'+rc+'<p>'+an+'</p></div>'
- +'<div class="card"><h2>Reflection discussion</h2><p class="mu">Discuss in your groups before the summary.</p>'+QS.map(function(q,i){return '<div class="q"><span>'+(i+1)+'</span><div>'+q+'</div></div>'}).join("")+'</div>'
+ e.innerHTML=REFL()+'<div class="'+(n?"card":"hide")+'"><div class="v">'+V[0]+' '+V[1]+'</div><p class="mu">Being heard '+H+' · Rapport '+R+' · '+ok+' of '+n+' most effective</p>'+rc+'<p>'+an+'</p></div>'
+ 
  +'<div class="card"><h2>CQ framework summary</h2><div class="fw"><div style="--cc:var(--cj)"><b>CQ Knowledge</b>French debate tests ideas, so disagreement signals investment, and praise is sparing and implicit. Interrupting, overstatement, irony and shrugs show engagement. Singaporean downgraders can leave opinions unnoticed.</div><div style="--cc:#7b3fe4"><b>CQ Strategy</b>Plan by learning the cultural dimensions, asking experienced colleagues and agreeing discussion norms. Adapt by switching off cruise control and reappraising: Antoine questioned the work, not Weiling. Weigh personality, seniority and time pressure too.</div><div style="--cc:var(--cs)"><b>CQ Action</b>Speak up boldly and promptly, or raise a hand if needed. Ask what worked. Take the invitation to share more. Drop downgraders and state points plainly. Adapting has limits, so aim to be heard.</div></div><p style="margin-top:12px"><button class="go" id="again">Play again</button></p></div>';
- $("again").onclick=play;if(H>=85)conf(70)}
-defs();$("start").onclick=play;
+ $("again").onclick=play;drawQ();$("dq").onclick=drawQ;if(ok==n&&n)conf(70)}
+defs();$("start").onclick=play;$("skipd").onclick=function(){run++;picks=[];H=25;R=25;$("intro").classList.add("hide");finish()};
 </script>
 </body>
 </html>
